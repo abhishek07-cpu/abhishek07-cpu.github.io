@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portfolio Admin | Abhishek Saharan</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="admin.css"></head>
+<body class="admin-body">
+<header class="topbar"><nav class="container nav"><a class="brand" href="index.html">AS<span>.</span> <small>ADMIN</small></a><a class="item-link" href="index.html">← View portfolio</a></nav></header>
+<main class="container admin-main">
+  <section class="login panel" id="loginPanel"><span class="kicker">Private area</span><h1>Admin login</h1><p class="muted">Sign in to manage your portfolio content.</p>
+    <form id="loginForm"><input id="loginEmail" type="email" placeholder="Admin email" required><input id="loginPassword" type="password" placeholder="Password" required><button class="btn primary" type="submit">Sign in</button></form><p class="tiny muted" id="loginMessage">Your admin account is created in Supabase Authentication. Public sign-ups should remain disabled.</p>
+  </section>
+  <section id="dashboard" class="hidden">
+    <div class="admin-heading"><div><span class="kicker">Content management</span><h1>Your portfolio dashboard</h1><p class="muted">Changes are saved to Supabase and appear on your public website.</p></div><button class="btn ghost" id="logoutBtn">Sign out</button></div>
+    <div class="admin-tabs" id="tabs"><button class="tab active" data-tab="profile">Profile</button><button class="tab" data-tab="project">Projects</button><button class="tab" data-tab="certificate">Certificates</button><button class="tab" data-tab="skill">Skills</button><button class="tab" data-tab="achievement">Achievements</button><button class="tab" data-tab="experience">Experience</button></div>
+    <div class="admin-grid">
+      <section class="panel editor"><h2 id="formTitle">Edit profile</h2>
+        <form id="profileForm" class="tab-panel">
+          <label>Full name<input name="full_name" required></label><label>Headline / tagline<input name="tagline"></label><label>About me<textarea name="bio"></textarea></label><label>Education<input name="education"></label><label>Location<input name="location"></label><label>Public email<input name="email" type="email"></label>
+          <div class="form-two"><label>LinkedIn URL<input name="linkedin" type="url" placeholder="https://linkedin.com/in/..."></label><label>GitHub URL<input name="github" type="url" placeholder="https://github.com/..."></label></div>
+          <div class="form-two"><label>Instagram URL<input name="instagram" type="url" placeholder="https://instagram.com/..."></label><label>Profile photo URL<input name="avatar_url" type="url" placeholder="https://..."></label></div>
+          <label>Resume URL<input name="resume_url" type="url" placeholder="Public PDF link"></label><button class="btn primary" type="submit">Save profile</button>
+        </form>
+        <form id="itemForm" class="tab-panel hidden">
+          <input type="hidden" name="id"><input type="hidden" name="type">
+          <label>Title<input name="title" required maxlength="100"></label><label>Description<textarea name="description" required></textarea></label>
+          <div class="form-two"><label>Category<input name="category" placeholder="Python, Course, Education..."></label><label>Date / status<input name="date_label" placeholder="2026 or In progress"></label></div>
+          <label id="urlLabel">Link (GitHub, demo or verification URL)<input name="url" type="url" placeholder="https://..."></label>
+          <label id="fileLabel" class="hidden">Certificate file (PDF, PNG, JPG, WEBP; max 10 MB)<input name="file" type="file" accept=".pdf,image/png,image/jpeg,image/webp"></label>
+          <div class="form-two"><button class="btn primary" type="submit" id="saveItemBtn">Save item</button><button class="btn ghost hidden" type="button" id="cancelEditBtn">Cancel edit</button></div>
+          <p class="tiny muted" id="fileHelp">For certificates, upload a file or provide a public verification URL.</p>
+        </form>
+      </section>
+      <section class="panel list-panel"><div class="list-heading"><h2 id="listTitle">Your content</h2><span class="tag" id="countBadge">0 items</span></div><div id="itemsList" class="items-list"></div></section>
+    </div>
+    <p class="notice">Security reminder: never share your Supabase service_role key. The website uses only the anon/public key; database and file permissions are enforced by Supabase Row Level Security.</p>
+  </section>
+  <div class="toast" id="toast" role="status"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="admin.js"></script>
+</body></html>
